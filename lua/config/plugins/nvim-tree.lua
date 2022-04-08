@@ -11,6 +11,11 @@ require("nvim-tree").setup({
     enable = true,
     icons = { hint = "H", info ="I", warning = "W", error= "E" }
   },
+  update_focused_file = {
+    enable = true,
+    update_cwd = false,
+    ignore_list = {},
+  },
   disable_netrw = false,
   view = {
     auto_resize = true,

@@ -90,6 +90,7 @@ local mappings = {
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+  ["n"] = { "<cmd>tabnew<CR><cmd>:term<CR>i", "Term in new tab"},
   ["f"] = {
     "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes'))<cr>",
     "Find files",
