@@ -48,7 +48,9 @@ require('packer').startup(function()
   use "folke/which-key.nvim" 
   use "windwp/nvim-autopairs"
   use "numToStr/Comment.nvim"
-  use "akinsho/toggleterm.nvim"
+  use {"akinsho/toggleterm.nvim", tag = 'v1.*', config = function()
+    require("toggleterm").setup()
+  end} 
   -- use "akinsho/bufferline.nvim"
 
   -- cmp plugins
@@ -92,7 +94,7 @@ require('packer').startup(function()
   -- Telescope
   use "nvim-telescope/telescope.nvim"
   use 'nvim-telescope/telescope-media-files.nvim'
-use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins  
   if PACKER_BOOTSTRAP then
@@ -101,7 +103,7 @@ use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 end)
 
 require("config.plugins.nvim-tree")
-require("config.plugins.cmp")
+--require("config.plugins.cmp")
 require("config.plugins.colorscheme")
 require("config.plugins.treesitter")
 require("config.plugins.whichkey")

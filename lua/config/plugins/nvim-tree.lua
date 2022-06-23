@@ -1,11 +1,3 @@
-vim.g.nvim_tree_git_hl = 1
-vim.g.nvim_tree_show_icons = {
-  ["git"] = 0,
-  ["folders"] = 0,
-  ["files"] = 0,
-  ["folder_arrows"] = 1,
-}
-
 require("nvim-tree").setup({
   diagnostics = {
     enable = true,
@@ -20,6 +12,17 @@ require("nvim-tree").setup({
   view = {
     auto_resize = true,
   },
+  renderer = {
+    highlight_git = true,
+    icons = {
+      show = {
+        git = false,
+        folder = false,
+        file = false,
+        folder_arrow = true 
+      }
+    }
+  }
 })
 
 vim.api.nvim_set_keymap("n", "<C-e>", ":NvimTreeToggle<CR>", { noremap = true, silent = true })

@@ -82,7 +82,7 @@ local mappings = {
   ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
   b = {
     name = "Buffers",
-    f = { "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>", "Find"}, 
+    f = { "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes'))<cr>", "Find"}, 
     q = { "<cmd>bd<CR>", "Close"}  
   },
   ["o"] = { "o<ESC>", "Newline"},
