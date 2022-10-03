@@ -44,3 +44,10 @@ cmd('au TextYankPost * silent! lua vim.highlight.on_yank()')
 -- set to auto read when a file is changed from the outside
 set.autoread = true
 cmd('au focusgained,bufenter * checktime')
+
+-- removes bottom bars
+vim.o.ls = 0
+vim.o.ch = 0
+
+-- Set winbar on top
+vim.o.winbar="%f"

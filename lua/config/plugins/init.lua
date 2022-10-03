@@ -64,7 +64,7 @@ require('packer').startup(function()
 
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/nvim-lsp-installer" -- language server installer
+  use  "williamboman/mason.nvim"  -- language server installer
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
   -- snippets
@@ -88,6 +88,7 @@ require('packer').startup(function()
     run = ":TSUpdate",
   }  
   use "nvim-treesitter/playground"
+  use 'nvim-treesitter/nvim-treesitter-context'
   use "windwp/nvim-ts-autotag"
   use "JoosepAlviste/nvim-ts-context-commentstring"
 
