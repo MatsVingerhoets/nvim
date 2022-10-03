@@ -119,6 +119,11 @@ _G.packer_plugins = {
     path = "/Users/matsvingerhoets/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
+  ["git-blame.nvim"] = {
+    loaded = true,
+    path = "/Users/matsvingerhoets/.local/share/nvim/site/pack/packer/start/git-blame.nvim",
+    url = "https://github.com/f-person/git-blame.nvim"
+  },
   ["null-ls.nvim"] = {
     loaded = true,
     path = "/Users/matsvingerhoets/.local/share/nvim/site/pack/packer/start/null-ls.nvim",

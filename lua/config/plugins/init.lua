@@ -91,6 +91,9 @@ require('packer').startup(function()
   use "windwp/nvim-ts-autotag"
   use "JoosepAlviste/nvim-ts-context-commentstring"
 
+  -- git
+  use 'f-person/git-blame.nvim'
+
   -- Telescope
   use "nvim-telescope/telescope.nvim"
   use 'nvim-telescope/telescope-media-files.nvim'
@@ -103,7 +106,7 @@ require('packer').startup(function()
 end)
 
 require("config.plugins.nvim-tree")
---require("config.plugins.cmp")
+require("config.plugins.cmp")
 require("config.plugins.colorscheme")
 require("config.plugins.treesitter")
 require("config.plugins.whichkey")
