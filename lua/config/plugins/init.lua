@@ -48,9 +48,9 @@ require('packer').startup(function()
   use "folke/which-key.nvim" 
   use "windwp/nvim-autopairs"
   use "numToStr/Comment.nvim"
-  use {"akinsho/toggleterm.nvim", tag = 'v1.*', config = function()
+   use {"akinsho/toggleterm.nvim", tag = 'v1.*', config = function()
     require("toggleterm").setup()
-  end} 
+   end} 
   -- use "akinsho/bufferline.nvim"
 
   -- cmp plugins
