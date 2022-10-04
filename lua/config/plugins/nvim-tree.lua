@@ -10,7 +10,7 @@ require("nvim-tree").setup({
   },
   disable_netrw = false,
   view = {
-    auto_resize = true,
+    adaptive_size = true,
   },
   renderer = {
     highlight_git = true,
