@@ -1,3 +1,4 @@
+
 local status_ok, mason = pcall(require, "mason")
 if not status_ok then
   return
@@ -24,8 +25,7 @@ local servers = {
   "pyright",
   "yamlls",
   "bashls",
-  "clangd",
-  "rust_analyzer",
+  "clangd", "rust_analyzer",
   "taplo",
   "zk@v0.10.1",
   "lemminx"
@@ -35,9 +35,9 @@ local settings = {
   ui = {
     border = "rounded",
     icons = {
-      server_installed = "✓",
-      server_pending = "➜",
-      server_uninstalled = "✗"
+      package_installed = "◍",
+      package_pending = "◍",
+      package_uninstalled = "◍",
     },
   },
   log_level = vim.log.levels.INFO,
@@ -59,19 +59,18 @@ local opts = {}
 
 for _, server in pairs(servers) do
   opts = {
-    on_attach = require("user.lsp.handlers").on_attach,
-    capabilities = require("user.lsp.handlers").capabilities,
+    on_attach = require("config.lsp.handlers").on_attach,
+    capabilities = require("config.lsp.handlers").capabilities,
   }
-
   server = vim.split(server, "@")[1]
 
-  if server == "jsonls" then
-    local jsonls_opts = require "user.lsp.settings.jsonls"
-    opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
-  end
-
+   --[[ if server == "jsonls" then  ]]
+   --[[   local jsonls_opts = require "config.lsp.settings.jsonls"  ]]
+   --[[   opts = vim.tbl_deep_extend("force", jsonls_opts, opts)  ]]
+   --[[ end  ]]
+ 
   if server == "yamlls" then
-    local yamlls_opts = require "user.lsp.settings.yamlls"
+    local yamlls_opts = require "config.lsp.settings.yamlls"
     opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
   end
 
@@ -97,17 +96,10 @@ for _, server in pairs(servers) do
   end
 
   if server == "tsserver" then
-    local tsserver_opts = require "user.lsp.settings.tsserver"
+    local tsserver_opts = require "config.lsp.settings.tsserver"
     opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
   end
-
-  if server == "pyright" then
-    local pyright_opts = require "user.lsp.settings.pyright"
-    opts = vim.tbl_deep_extend("force", pyright_opts, opts)
-  end
-
   lspconfig[server].setup(opts)
   ::continue::
 end
 
--- require("lspconfig").motoko.setup {}

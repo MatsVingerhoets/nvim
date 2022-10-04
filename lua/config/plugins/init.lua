@@ -48,9 +48,9 @@ require('packer').startup(function()
   use "folke/which-key.nvim" 
   use "windwp/nvim-autopairs"
   use "numToStr/Comment.nvim"
-   use {"akinsho/toggleterm.nvim", tag = 'v1.*', config = function()
+  use {"akinsho/toggleterm.nvim", tag = 'v1.*', config = function()
     require("toggleterm").setup()
-   end} 
+  end} 
   -- use "akinsho/bufferline.nvim"
 
   -- cmp plugins
@@ -63,9 +63,20 @@ require('packer').startup(function()
   use "hrsh7th/cmp-nvim-lua"
 
   -- LSP
-  use "neovim/nvim-lspconfig" -- enable LSP
-  use  "williamboman/mason.nvim"  -- language server installer
-  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  use {
+      'williamboman/mason.nvim',
+      config = function() require('config.lsp') end,
+      requires = {
+        { 'williamboman/mason-lspconfig.nvim' },
+        { 'neovim/nvim-lspconfig' },
+        { 'mfussenegger/nvim-dap' },
+        { 'jose-elias-alvarez/null-ls.nvim' },
+        { 'jayp0521/mason-null-ls.nvim'},
+        { 'jayp0521/mason-nvim-dap.nvim'},
+        { 'folke/lua-dev.nvim' },
+        {'lvimuser/lsp-inlayhints.nvim'}
+      }
+    }
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine

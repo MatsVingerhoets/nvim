@@ -13,9 +13,16 @@ local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup {
   debug = false,
   sources = {
-    formatting.prettier,
+    formatting.prettier.with {
+      extra_filetypes = { "toml", "solidity" },
+      extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+    },
+    formatting.black.with { extra_args = { "--fast" } },
     formatting.stylua,
-    null_ls.builtins.formatting.prismaFmt
+    formatting.shfmt,
+    formatting.google_java_format,
+    -- diagnostics.flake8,
+    diagnostics.shellcheck,
   },
-  on_attach = require("config.lsp.handlers").on_attach,
 }
+
