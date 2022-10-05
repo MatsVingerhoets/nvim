@@ -33,6 +33,13 @@ map('n', '<leader>cfn', ':let @+ = expand("%:t")<cr>', options)
 map("i", "jk", "<ESC>", options)
 map("t", "jk", "<C-\\><C-n>", options)
 
+-- Yanky
+map("n", "p", "<Plug>(YankyPutAfter)", options)
+map("n", "P", "<Plug>(YankyPutBefore)", options)
+map("n", "gp", "<Plug>(YankyGPutAfter)", options)
+map("n", "gP", "<Plug>(YankyGPutBefore)", options)
+map("n", "<c-n>", "<Plug>(YankyCycleForward)", options)
+map("n", "<c-p>", "<Plug>(YankyCycleBackward)", options)
 -- LAZYGIT
 -- function _G.open_lazygit()
 --   vim.cmd ':tabnew'

@@ -6,6 +6,7 @@ local actions = require "telescope.actions"
 
 telescope.setup {
   defaults = {
+    dynamic_preview_title = true,
     prompt_prefix = " ",
     selection_caret = " ",
     file_ignore_patterns = { "node%_modules/.*", "%.js" },

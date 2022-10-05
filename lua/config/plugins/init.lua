@@ -103,6 +103,9 @@ require('packer').startup(function()
   use "windwp/nvim-ts-autotag"
   use "JoosepAlviste/nvim-ts-context-commentstring"
 
+  -- Yanky
+  use "gbprod/yanky.nvim"
+
   -- git
   use 'f-person/git-blame.nvim'
 
@@ -127,3 +130,5 @@ require("config.plugins.autopairs")
 require("config.plugins.comment")
 require("config.plugins.bufferline")
 require("config.plugins.toggleterm")
+require("config.plugins.yanky")
+require("telescope").load_extension("yank_history")
