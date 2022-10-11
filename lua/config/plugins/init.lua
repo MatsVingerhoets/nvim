@@ -113,6 +113,18 @@ require('packer').startup(function()
   use "nvim-telescope/telescope.nvim"
   use 'nvim-telescope/telescope-media-files.nvim'
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  
+  -- NeoTest
+  use {
+  "nvim-neotest/neotest",
+  requires = {
+    "nvim-lua/plenary.nvim",
+    "nvim-treesitter/nvim-treesitter",
+    "haydenmeade/neotest-jest",
+    "antoinemadec/FixCursorHold.nvim"
+  }
+}
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins  
   if PACKER_BOOTSTRAP then
@@ -131,4 +143,5 @@ require("config.plugins.comment")
 require("config.plugins.bufferline")
 require("config.plugins.toggleterm")
 require("config.plugins.yanky")
+require("config.plugins.neotest")
 require("telescope").load_extension("yank_history")
