@@ -15,15 +15,23 @@ set.termguicolors = true
 set.expandtab = true
 set.tabstop = 2
 set.shiftwidth = 2
+set.autoindent = true
 
-set.signcolumn = "yes" 
+-- line wrapping 
+set.wrap = false
+set.signcolumn = "yes"
+
+-- search settings
+set.ignorecase = true
+set.smartcase = true
 
 -- show line numbers, except in terminal
 set.number = true
+set.relativenumber = true
 cmd('au TermOpen * setlocal nonumber norelativenumber')
 
 -- time to wait for a mapped sequence to complete (in milliseconds)
-set.timeoutlen = 100,                        
+set.timeoutlen = 500,
 
 -- sees test-test as one word
 set.iskeyword:append("-")
