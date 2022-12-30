@@ -17,7 +17,7 @@ set.tabstop = 2
 set.shiftwidth = 2
 set.autoindent = true
 
--- line wrapping 
+-- line wrapping
 set.wrap = false
 set.signcolumn = "yes"
 
@@ -28,12 +28,13 @@ set.smartcase = true
 -- show line numbers, except in terminal
 set.number = true
 set.relativenumber = true
-cmd('au TermOpen * setlocal nonumber norelativenumber')
+cmd("au TermOpen * setlocal nonumber norelativenumber")
 
 -- time to wait for a mapped sequence to complete (in milliseconds)
-set.timeoutlen = 500,
-
--- sees test-test as one word
+set.timeoutlen =
+	250,
+	
+	-- sees test-test as one word
 set.iskeyword:append("-")
 
 -- highlight cursorline
@@ -43,19 +44,19 @@ set.cursorline = true
 set.hidden = true
 
 -- match os clipboard with nvim
-set.clipboard = {'unnamed', 'unnamedplus'}
-set.inccommand = 'split'
+set.clipboard = { "unnamed", "unnamedplus" }
+set.inccommand = "split"
 
 -- highlight on yank
-cmd('au TextYankPost * silent! lua vim.highlight.on_yank()')
+cmd("au TextYankPost * silent! lua vim.highlight.on_yank()")
 
 -- set to auto read when a file is changed from the outside
 set.autoread = true
-cmd('au focusgained,bufenter * checktime')
+cmd("au focusgained,bufenter * checktime")
 
 -- removes bottom bars
 vim.o.ls = 0
 vim.o.ch = 0
 
 -- Set winbar on top
-vim.o.winbar="%f"
+--[[ vim.o.winbar="%f" ]]

@@ -107,6 +107,9 @@ require("packer").startup(function()
 		end,
 	})
 
+	-- Bufferline for buffertabs
+	use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "nvim-tree/nvim-web-devicons" })
+
 	-- auto closing
 	use("windwp/nvim-autopairs")
 	use("windwp/nvim-ts-autotag")
@@ -146,3 +149,4 @@ require("config.plugins.telescope")
 require("config.plugins.yanky")
 require("config.plugins.toggleterm")
 require("config.plugins.whichkey")
+require("config.plugins.bufferline")
