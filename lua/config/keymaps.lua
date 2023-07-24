@@ -2,10 +2,22 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 vim.keymap.set("n", "<leader>w", "<cmd>w!<CR>", { desc = "Save", remap = true })
-vim.keymap.set("n", "<leader>fF", "<cmd>Telescope live_grep theme=ivy<cr>", { desc = "Find text", remap = true })
+vim.keymap.set("n", "<leader>F", "<cmd>Telescope live_grep theme=ivy<cr>", { desc = "Find text", noremap = true })
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>n", ":NvimTreeFindFile<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>gg", ":LazyGit<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ww", ":noa w<CR>", { noremap = true, silent = true })
+vim.keymap.set("v", "p", "P", { desc = "paste without yank", remap = true })
+
+-- Define a function to open a new tab, split vertically, and open terminals
+function OpenVerticalTerminals()
+  vim.cmd("tabnew")
+  vim.cmd("vsplit")
+  vim.cmd("terminal")
+  vim.cmd("wincmd h")
+  vim.cmd("terminal")
+end
+vim.api.nvim_set_keymap("n", "<leader>tg", ":lua OpenVerticalTerminals()<CR>", { noremap = true, silent = true })
 
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
