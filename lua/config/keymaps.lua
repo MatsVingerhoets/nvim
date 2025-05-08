@@ -2,7 +2,7 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 vim.keymap.set("n", "<leader>w", "<cmd>w!<CR>", { desc = "Save", remap = true })
-vim.keymap.set("n", "<leader>F", "<cmd>Telescope live_grep theme=ivy<cr>", { desc = "Find text", noremap = true })
+vim.keymap.set("n", "<leader>F", "<cmd>FzfLua live_grep theme=ivy<cr>", { desc = "Find text", noremap = true })
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>n", ":NvimTreeFindFile<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>gg", ":LazyGit<CR>", { noremap = true, silent = true })
