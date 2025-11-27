@@ -1,12 +1,39 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  -- bootstrap lazy.nvim
-  -- stylua: ignore
-  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
+-- Force a Linux-compatible SSL backend so host git configs (secure-transport on macOS) don't break in containers.
+vim.env.GIT_SSL_BACKEND = vim.env.GIT_SSL_BACKEND or "gnutls"
+-- Ignore host-level gitconfig overrides (like url.rewrite or sslbackend) that can break installs inside containers.
+vim.env.GIT_CONFIG_GLOBAL = vim.env.GIT_CONFIG_GLOBAL or "/dev/null"
+vim.env.GIT_CONFIG_SYSTEM = vim.env.GIT_CONFIG_SYSTEM or "/dev/null"
+-- Keep SSH host keys in a writable scratch file and accept current key to avoid host-known_hosts conflicts from host mounts.
+vim.env.GIT_SSH_COMMAND = vim.env.GIT_SSH_COMMAND or "ssh -o UserKnownHostsFile=/tmp/known_hosts -o StrictHostKeyChecking=accept-new"
+
+local function ensure_lazy()
+  if vim.loop.fs_stat(lazypath) then
+    return true
+  end
+  -- Bootstrap lazy.nvim if the data volume is fresh.
+  -- Explicitly force a Linux-friendly SSL backend to avoid macOS configs (secure-transport) breaking clones in containers.
+  local cmd = { "git", "-c", "http.sslbackend=gnutls", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath }
+  local output = vim.fn.system(cmd) -- stylua: ignore
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_err_writeln("lazy.nvim clone failed: " .. output)
+    return false
+  end
+  return vim.loop.fs_stat(lazypath) ~= nil
 end
+
+if not ensure_lazy() then
+  vim.api.nvim_err_writeln("Failed to bootstrap lazy.nvim; check git/network access.")
+  return
+end
+
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup({
+  git = {
+    -- Use SSH for plugin fetches, while GIT_SSH_COMMAND above manages known_hosts safely inside the container.
+    url_format = "git@github.com:%s.git",
+  },
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
